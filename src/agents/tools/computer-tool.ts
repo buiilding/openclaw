@@ -27,24 +27,6 @@ const log = createSubsystemLogger("agents/tools/computer");
 
 const COORDINATE_KINDS = new Set(["click", "double_click", "right_click", "move", "drag"]);
 
-function formatSystemStateText(systemState: Record<string, unknown>, actionLine?: string): string {
-  const activeWindow =
-    typeof systemState.active_window === "string" ? systemState.active_window : "";
-  const mousePosition =
-    typeof systemState.mouse_position === "string" ? systemState.mouse_position : "";
-  const screenResolution =
-    typeof systemState.screen_resolution === "string" ? systemState.screen_resolution : "";
-  const time = typeof systemState.time === "string" ? systemState.time : "";
-  const parts = [
-    actionLine?.trim() ? actionLine.trim() : undefined,
-    activeWindow ? `Active window: ${activeWindow}` : undefined,
-    mousePosition ? `Mouse: ${mousePosition}` : undefined,
-    screenResolution ? `Screen: ${screenResolution}` : undefined,
-    time ? `Time: ${time}` : undefined,
-  ].filter(Boolean);
-  return parts.join(" | ");
-}
-
 export function createComputerTool(options?: { agentSessionKey?: string }): AnyAgentTool {
   return {
     label: "Computer",
@@ -110,7 +92,6 @@ export function createComputerTool(options?: { agentSessionKey?: string }): AnyA
           path: saved.path,
           base64: snapshot.screenshot,
           mimeType: snapshot.mimeType ?? "image/jpeg",
-          extraText: formatSystemStateText(snapshot.systemState),
           details: {
             screenshotId: ingest.screenshotId,
             systemState: snapshot.systemState,
@@ -191,17 +172,11 @@ export function createComputerTool(options?: { agentSessionKey?: string }): AnyA
       const saved = await saveMediaBuffer(buffer, snapshot.mimeType ?? "image/jpeg", "computer");
 
       log.info("Computer action executed", { kind, actResult });
-      const actionMessage =
-        actResult?.message && typeof actResult.message === "string" ? actResult.message.trim() : "";
-      const actionLine = actionMessage
-        ? `Action: ${kind} (${actionMessage})`
-        : `Action: ${kind} (${actResult.ok ? "ok" : "failed"})`;
       return await imageResult({
         label: "computer:act",
         path: saved.path,
         base64: snapshot.screenshot,
         mimeType: snapshot.mimeType ?? "image/jpeg",
-        extraText: formatSystemStateText(snapshot.systemState, actionLine),
         details: {
           action: kind,
           actionResult: actResult,
