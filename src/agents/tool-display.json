@@ -105,6 +105,24 @@
         }
       }
     },
+    "computer": {
+      "emoji": "🖥️",
+      "title": "Computer",
+      "actions": {
+        "status": { "label": "status" },
+        "snapshot": { "label": "snapshot", "detailKeys": ["delayMs"] },
+        "act": {
+          "label": "act",
+          "detailKeys": [
+            "request.kind",
+            "request.x",
+            "request.y",
+            "request.ocr_text",
+            "request.description"
+          ]
+        }
+      }
+    },
     "canvas": {
       "emoji": "🖼️",
       "title": "Canvas",

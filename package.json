@@ -48,6 +48,7 @@
     "dist/*.js",
     "dist/*.json",
     "docs/**",
+    "python/**",
     "extensions/**",
     "assets/**",
     "openclaw.mjs",

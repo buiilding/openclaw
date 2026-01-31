@@ -166,6 +166,31 @@ export const OpenClawSchema = z
       })
       .strict()
       .optional(),
+    computer: z
+      .object({
+        enabled: z.boolean().optional(),
+        exec: z
+          .object({
+            path: z.string().optional(),
+            args: z.array(z.string()).optional(),
+            timeoutMs: z.number().int().nonnegative().optional(),
+          })
+          .strict()
+          .optional(),
+        vision: z
+          .object({
+            path: z.string().optional(),
+            args: z.array(z.string()).optional(),
+            timeoutMs: z.number().int().nonnegative().optional(),
+            ocrMatchThreshold: z.number().min(0).max(1).optional(),
+            ocrWaitTimeoutMs: z.number().int().nonnegative().optional(),
+            modelName: z.string().optional(),
+          })
+          .strict()
+          .optional(),
+      })
+      .strict()
+      .optional(),
     ui: z
       .object({
         seamColor: HexColorSchema.optional(),

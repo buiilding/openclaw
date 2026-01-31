@@ -1,7 +1,7 @@
 export const MOONSHOT_KIMI_K2_DEFAULT_ID = "kimi-k2-0905-preview";
 export const MOONSHOT_KIMI_K2_CONTEXT_WINDOW = 256000;
 export const MOONSHOT_KIMI_K2_MAX_TOKENS = 8192;
-export const MOONSHOT_KIMI_K2_INPUT = ["text"] as const;
+export const MOONSHOT_KIMI_K2_INPUT = ["text", "image"] as const;
 export const MOONSHOT_KIMI_K2_COST = {
   input: 0,
   output: 0,

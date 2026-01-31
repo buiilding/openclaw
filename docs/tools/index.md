@@ -146,7 +146,7 @@ Available groups:
 - `group:sessions`: `sessions_list`, `sessions_history`, `sessions_send`, `sessions_spawn`, `session_status`
 - `group:memory`: `memory_search`, `memory_get`
 - `group:web`: `web_search`, `web_fetch`
-- `group:ui`: `browser`, `canvas`
+- `group:ui`: `browser`, `canvas`, `computer`
 - `group:automation`: `cron`, `gateway`
 - `group:messaging`: `message`
 - `group:nodes`: `nodes`
@@ -294,6 +294,18 @@ Common parameters:
 - Avoid `act` → `wait` by default; use it only in exceptional cases (no reliable UI state to wait on).
 - `upload` can optionally pass a `ref` to auto-click after arming.
 - `upload` also supports `inputRef` (aria ref) or `element` (CSS selector) to set `<input type="file">` directly.
+
+### `computer`
+Control the OS via screenshots + coordinate-based actions.
+
+Core actions:
+- `status`
+- `snapshot` (returns screenshot + system state)
+- `act` (click/type/scroll/hotkey/wait; supports OCR + vision grounding)
+
+Notes:
+- Requires `computer.enabled=true` (default is `false`).
+- OCR + vision grounding run in separate Python sidecars.
 
 ### `canvas`
 

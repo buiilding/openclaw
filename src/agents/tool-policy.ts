@@ -27,7 +27,7 @@ export const TOOL_GROUPS: Record<string, string[]> = {
     "session_status",
   ],
   // UI helpers
-  "group:ui": ["browser", "canvas"],
+  "group:ui": ["browser", "canvas", "computer"],
   // Automation + infra
   "group:automation": ["cron", "gateway"],
   // Messaging surface
@@ -38,6 +38,7 @@ export const TOOL_GROUPS: Record<string, string[]> = {
   "group:openclaw": [
     "browser",
     "canvas",
+    "computer",
     "nodes",
     "cron",
     "message",
