@@ -96,6 +96,7 @@ export function createOpenClawTools(options?: {
       currentThreadTs: options?.currentThreadTs,
       replyToMode: options?.replyToMode,
       hasRepliedRef: options?.hasRepliedRef,
+      sandboxRoot: options?.sandboxRoot,
     }),
     createTtsTool({
       agentChannel: options?.agentChannel,
